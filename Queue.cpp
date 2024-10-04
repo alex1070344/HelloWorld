@@ -58,8 +58,11 @@ int main() {
     for (int i = 1; i <= 20; ++i) {
         q.enqueue(i);
     }
-
-    q.display();
-
+    for (int i = 1; i <= 20; ++i) {
+        std::cout<<q.dequeue()<<" ";
+    }
+    std::cout<<std::endl;
+    q.enqueue(8);
+    std::cout<<q.dequeue()<<" ";
     return 0;
 }
