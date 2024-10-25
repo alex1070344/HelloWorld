@@ -1,8 +1,10 @@
 #include <iostream>
 
-struct Node {
+class Node {
+public:
     int data;
     Node* next;
+    Node(int data) : data(data), next(nullptr) {}
 };
 
 class Queue {
@@ -13,14 +15,14 @@ private:
 public:
     Queue() : front(nullptr), rear(nullptr) {}
 
-    ~Queue() {
+    Queue() {
         while (!isEmpty()) {
             dequeue();
         }
     }
 
     void enqueue(int value) {
-        Node* newNode = new Node();
+        Node* newNode = new Node(value);
         newNode->data = value;
         newNode->next = nullptr;
         if (rear != nullptr) {
@@ -52,7 +54,18 @@ public:
         }
         return front->data;
     }
-
+    void display() const {
+        if (isEmpty()) {
+            std::cout << "Queue is empty!" << std::endl;
+            return;
+        }
+        Node* current = front;
+        while (current != nullptr) {
+            std::cout << current->data << " ";
+            current = current->next;
+        }
+        std::cout << std::endl;
+    }
     bool isEmpty() const {
         return front == nullptr;
     }
