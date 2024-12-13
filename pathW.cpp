@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -84,12 +85,16 @@ int main() {
     cout << "Adjacency Matrix:" << endl;
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            cout << adjMatrix[i][j] << " ";
+            if (j >= i) {
+                cout << setw(3) << adjMatrix[i][j] << " ";
+            } else {
+                cout << "  x ";
+            }
         }
         cout << endl;
     }
 
-    // Dijkstra算法計算從頂點0到其他頂點的最短距離
+    // Dijkstra算法計算從頂點1到其他頂點的最短距離
     vector<int> dist(n, INT_MAX);
     dist[0] = 0;
     vector<bool> visited(n, false);
@@ -113,8 +118,8 @@ int main() {
         }
     }
 
-    // 輸出從頂點0到其他頂點的最短距離
-    cout << "Minimum distances from vertex 0:" << endl;
+    // 輸出從頂點1到其他頂點的最短距離
+    cout << "Minimum distances from vertex 1:" << endl;
     for (int i = 0; i < n; ++i) {
         cout << "1 to " << i+1 << " : " << dist[i] << endl;
     }
